@@ -1,14 +1,20 @@
 <template>
-  <div class="topnav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/login">Login</router-link>
+  <Header></Header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
-  <router-view></router-view>
+
 </template>
 
 <script>
+import Header from './views/header/Header.vue';
 export default {
-  name: "App",
+    name: "App",
+    components: { Header }
 };
 </script>
 
