@@ -2,6 +2,7 @@ import { createRouter,createWebHashHistory } from "vue-router";
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
+import SinglePost from '../views/pages/single_post/SinglePost.vue';
 
 const routes= [
     {   
@@ -18,6 +19,11 @@ const routes= [
         path:'/register',
         name:'Register',
         component:Register
+    },
+    {   
+        path:'/post/:id',
+        name:'SinglePost',
+        component:SinglePost
     },
 ]
 
