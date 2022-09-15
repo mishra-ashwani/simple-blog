@@ -61,8 +61,9 @@ export default {
     },
     async saveComment(){        
         await axios.post('comment',this.comment)
-        .then((response) => {
+        .then(() => {
           this.resetForm()
+          this.$parent.getAllComments();
         })
         .catch(function (error) {
             console.log(error);

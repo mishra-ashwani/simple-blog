@@ -14,7 +14,7 @@
             />
 
             <div class="row align-items-center mb-4">
-              <div class="col-lg-6 text-center text-lg-start mb-3 m-lg-0">
+              <div class="col-lg-8 text-center text-lg-start mb-3 m-lg-0">
                 <img
                   src="https://mdbootstrap.com/img/Photos/Avatars/img (23).jpg"
                   class="rounded-5 shadow-1-strong me-2"
@@ -41,6 +41,7 @@
           <!--Section: Reply-->
           
           <NewComment :post_id="id"></NewComment>
+          <CommentsList :post_id="id" :comments="comments"></CommentsList>
           <!--Section: Reply-->
         </div>
         <!--Grid column-->
@@ -57,18 +58,21 @@
   import axios from "axios";
   import moment from 'moment'
   import NewComment from "./NewComment.vue";
+  import CommentsList from "./CommentsList.vue";
   export default {
     name: "SinglePost",
     data() {
         return {
             post: {},
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            comments:{}
         };
     },
     created() {
         axios.get("post/" + this.id)
             .then(response => {
             this.post = response.data.post[0];
+            this.comments = response.data.post[0].comments;
         })
         .catch(error => {
           console.warn(error)
@@ -77,11 +81,21 @@
     methods: {
       dateFormat(post_date){
         if (post_date) {
-           return moment(String(post_date)).format('DD MMM, YYYY hh:mm')
+           return moment(String(post_date)).format('DD MMM, YYYY')
         }
+      },
+      async getAllComments(){
+        await axios.get("comments/" + this.id)
+            .then(response => {
+            this.comments = response.data.data;
+        })
+        .catch(error => {
+          console.warn(error)
+        });
       }
+
     },
-    components: { NewComment }
+    components: { NewComment, CommentsList }
 };
 </script>
 

@@ -24,6 +24,8 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "node-sass": "^7.0.3",
+    "sass-loader": "^13.0.2",
     "vue-cli-plugin-mdb5": "~1.2.0"
   },
   "eslintConfig": {
@@ -38,7 +40,10 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off",
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",
